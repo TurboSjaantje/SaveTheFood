@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Static\" />
+    <None Include="wwwroot\images\Account.png" />
+    <None Include="wwwroot\images\home_banner.jpg" />
   </ItemGroup>
 
 </Project>

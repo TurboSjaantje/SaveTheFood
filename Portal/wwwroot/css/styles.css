@@ -1,0 +1,57 @@
+﻿#navbar {
+    background-color: #456000;
+    color: #DBC490;
+}
+
+.nav-link {
+    color: #DBC490;
+}
+
+    .nav-link:hover {
+        color: antiquewhite;
+    }
+
+.navbar-brand {
+    color: #DBC490;
+}
+
+.navbar-toggler-icon {
+    color: #DBC490;
+}
+
+.fill {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+
+    .fill img {
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%
+    }
+
+.banner-overlay {
+    height: 100vh;
+    width: 100%;
+    height: 400px;
+    background: black;
+    z-index: 1;
+    opacity: 0.5;
+    overflow: hidden;
+    position: absolute;
+}
+
+.hero-content {
+    z-index: 2;
+    margin: 0;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    -ms-transform: translate(-50%, -45%);
+    transform: translate(-50%, -45%);
+    color: white;
+}
+
