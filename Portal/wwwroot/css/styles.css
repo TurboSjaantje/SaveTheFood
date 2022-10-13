@@ -1,4 +1,4 @@
-﻿#navbar {
+﻿#navbar,.navbar {
     background-color: #456000;
     color: #DBC490;
 }
@@ -15,16 +15,31 @@
     color: #DBC490;
 }
 
-.navbar-toggler-icon {
+.navbar-toggler-icon, .dropdown-toggle::after {
+    color: #DBC490;
+}
+
+    .navbar-toggler:focus,
+    .navbar-toggler:active,
+    .navbar-toggler-icon:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+a.dropdown-item {
     color: #DBC490;
 }
 
 .fill {
-    height: 400px;
+    position: absolute;
+    top: 0;
+    height: 50vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+    margin-inline: auto;
 }
 
     .fill img {
@@ -34,24 +49,75 @@
     }
 
 .banner-overlay {
-    height: 100vh;
+    position: absolute;
+    top: 0;
     width: 100%;
-    height: 400px;
+    height: 50vh;
     background: black;
     z-index: 1;
-    opacity: 0.5;
+    opacity: 0.75;
     overflow: hidden;
     position: absolute;
 }
 
 .hero-content {
     z-index: 2;
-    margin: 0;
     position: absolute;
-    top: 35%;
-    left: 50%;
-    -ms-transform: translate(-50%, -45%);
-    transform: translate(-50%, -45%);
+    margin: auto;
+    top: 5vh;
     color: white;
+    padding: 5vh;
+    height: 50vh;
+    overflow: hidden;
 }
+
+.center {
+    margin: auto;
+}
+
+@media (min-width: 768px) {
+
+    .account-right {
+        float: right;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .account-right {
+        float: left;
+    }
+
+    .dropdown-menu-end {
+        background-color: #456000;
+        color: #DBC490;
+        border: none;
+    }
+
+    .dropdown-item {
+        color: #DBC490;
+    }
+}
+
+.btn-custom {
+    background-color: #DBC490;
+}
+
+    .btn-custom:hover {
+        background-color: white;
+        color: black;
+    }
+
+#navbar {
+    z-index: 3;
+    position: sticky;
+    width: 100%;
+}
+
+.dropdown-menu {
+    background-color: #456000;
+}
+
+
+
 

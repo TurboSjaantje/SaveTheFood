@@ -8,7 +8,17 @@ namespace Portal.Controllers
     {
         public IActionResult Index()
         {
+            return View("Login");
+        }
+
+        public ViewResult Home()
+        {
             return View("Index");
+        }
+
+        public ViewResult Meal()
+        {
+            return View("Meal");
         }
     }
 }

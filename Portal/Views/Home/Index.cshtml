@@ -2,18 +2,110 @@
     Layout = "../Shared/_Layout.cshtml";
 }
 
-<div class="banner-container">
+@*BANNER*@
+<div class="banner-container mb-3">
     <div class="banner-overlay"></div>
     <div class="fill">
         <img src="~/images/home_banner.jpg" alt="Home page banner" />
     </div>
-    <div class="row">
-        <div class="col-lg-6 col-md-8 hero-content">
+    <div class="row justify-content-center center">
+        <div class="col-lg-6 col-md-10 col-sm-12 hero-content text-center">
             <h1>Lorem Ipsum</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat justo ipsum, a scelerisque leo sodales venenatis. Vivamus ut ex at lorem tempus tristique. Etiam et ultrices lectus. Praesent sit amet tincidunt mauris. Curabitur pharetra risus porttitor, semper libero quis, consequat magna. Etiam iaculis ultricies nibh ut interdum. Aenean porttitor leo augue, id malesuada est lacinia eget. In tristique urna nulla, sed mollis metus hendrerit id.
             </p>
-            <button class="btn btn-primary m-1">More info</button>
+            <button class="btn btn-custom m-1">More info</button>
+        </div>
+    </div>
+</div>
+
+@*TITLE*@
+<div class="container row mb-3 center" style="margin-top: 52vh;">
+    <h2>Explore</h2>
+</div>
+
+@*CARDS*@
+<div class="container row justify-content-center mb-3 center">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <a asp-action="Meal" class="text-decoration-none text-black">
+            <div class="card mb-3">
+                <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Cart title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </a> 
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="card mb-3">
+            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Cart title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
         </div>
     </div>
 </div>
