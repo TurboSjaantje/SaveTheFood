@@ -1,0 +1,109 @@
+﻿@using Domain
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    int pakketid = 0;
+}
+
+<div class="container row mb-3 center">
+    <div class="row">
+        <h1 class="text-center mb-3">Pakketbeheer</h1>
+        <a class="btn btn-custom" asp-controller="Pakket" asp-action="NieuwPakket">Nieuw Pakket</a>
+        <div class="dropdown-divider mb-3"></div>
+    </div>
+
+    @*CARDS*@
+    <h2 class="text-center">Vrijgegeven pakektten</h2>
+    <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
+        @foreach (Pakket p in ViewBag.vrijgegevenPakketten)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="card mb-3 text-decoration-none">
+                    <img class="image-card ms-auto me-auto" src="~/images/example_box.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title">@p.Naam</h4>
+                        <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
+                            <h5>€@p.Prijs</h5>
+                            <ul class="card-text mb-1">
+                                <li>@p.TypeMaaltijd</li>
+                                <li>Beschikbaar sinds: @p.DatumTijd</li>
+                                <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
+                                @if (p.AchtienPlus)
+                                {
+                                    <li>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+                <div class="row text-center text-decoration-none mb-3">
+                    <div class="col col-sm-6">
+                        <a class="btn btn-custom-secondary" asp-action="UpdatePakket" asp-controller="Pakket" asp-route-pakketid="@p.Id">Bewerken</a>
+                    </div>
+                    <div class="col col-sm-6">
+                        <button id="deleteInput" onclick="@(pakketid = p.Id)" type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-custom-secondary">Verwijderen</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <h2 class="text-center">Gereserveerde pakketten</h2>
+    <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
+        @foreach (Pakket p in ViewBag.gereserveerdePakketten)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="text-decoration-none">
+                    <div class="card mb-3">
+                        <img class="image-card ms-auto me-auto" src="~/images/example_box.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">@p.Naam</h4>
+                            <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
+                                <h5>€@p.Prijs</h5>
+                                <ul class="card-text mb-1">
+                                    <li>@p.TypeMaaltijd</li>
+                                    <li>Beschikbaar sinds: @p.DatumTijd</li>
+                                    <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
+                                    @if (p.AchtienPlus)
+                                    {
+                                        <li>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</li>
+                                    }
+                                </ul>
+                            </div>
+                            <h6 class="text-center mt-3">Word afgehaald op: @p.OphaalTijd</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+
+    <div class="modal fade" id="deleteModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h3>Bevestigen</h3>
+                    <p>Klopt het dat u dit pakket wilt verwijderen?</p>
+                    <a id="deleteInput2" asp-action="VerwijderPakket" asp-controller="Pakket" asp-route-pakketid="@(pakketid)" type="button" class="btn btn-custom" data-toggle="modal" data-target="#exampleModal">
+                        verwijder
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#deleteInput").click(function (e) {
+                $('#deleteModal').modal('show')
+            });
+        });
+        $(document).ready(function () {
+            $("#deleteInput2").click(function (e) {
+                $('#deleteModal').modal('hide')
+            });
+        });
+    </script>
+}

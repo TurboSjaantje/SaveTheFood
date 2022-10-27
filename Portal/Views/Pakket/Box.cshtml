@@ -1,0 +1,147 @@
+﻿@using Domain;
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    Pakket p = ViewBag.pakket;
+}
+
+<div class="container row mb-5 center">
+    <div class="row">
+        <h2>@p.Naam</h2>
+    </div>
+    <div class="container-custom mt-3 mb-3 pt-4">
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="~/images/example_box.png" class="mt-auto mb-auto" width="100%" height="auto" />
+            </div>
+            <div class="col-lg-8">
+                <h3>@p.TypeMaaltijd</h3>
+                <h4>€ @Math.Round(p.Prijs, 2),-</h4>
+
+                @if (p.AchtienPlus)
+                {
+                    <p>Deze maaltijd bevat alcoholhoudende levensmiddelen</p>
+                }
+                else
+                {
+                    <p>Deze maaltijd bevat geen alcoholhoudende levensmiddelen</p>
+                }
+
+                <p>Kantine: @p.kantine.Stad, @p.kantine.Locatie</p>
+                <p>Beschikbaar sinds: @p.DatumTijd</p>
+                <p>Ophalen om: @p.OphaalTijd</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h2>Producten</h2>
+        @foreach (Product product in p.Producten)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card mb-3">
+                    <img class="card-image-top align-content-center text-center" style="height: 200px; width: auto; object-fit: scale-down;" src="@product.Foto" alt="Card image cap">
+                    <div class="card-body">
+                        <h5>@product.Naam</h5>
+                        @if (product.AlcoholHoudend)
+                        {
+                            <p>Dit product bevat alcohol.</p>
+                        }
+                        else
+                        {
+                            <p>Dit product bevat alcohol.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div><div class="dropdown-divider"></div></div>
+    </div>
+
+    <div class="row">
+        @if (ViewBag.vorigePagina?.Equals("Reserveren") ?? false)
+        {
+            <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Reserveren" asp-controller="Pakket">Terug</a></div>
+        }
+        else if (ViewBag.vorigePagina?.Equals("Home") ?? false)
+        {
+            <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Index" asp-controller="Home">Terug</a></div>
+        }
+        else if (ViewBag.vorigePagina?.Equals("Reserveringen") ?? false)
+        {
+            <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Reserveringen" asp-controller="Pakket">Terug</a></div>
+        }
+        else if (ViewBag.vorigePagina?.Equals("Pakketten") ?? false)
+        {
+            <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Pakketten" asp-controller="Pakket">Terug</a></div>
+        }
+        else if (ViewBag.vorigePagina?.Equals("Pakketbeheer") ?? false)
+        {
+            <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Pakketbeheer" asp-controller="Pakket">Terug</a></div>
+        }
+        @if (p.GereserveerdDoor == null && User.HasClaim("UserType", "regularuser"))
+        {
+            <div class="col-sm-6 text-end">
+                <button id="myInput" type="button" class="btn btn-custom" data-toggle="modal" data-target="#exampleModal">Reserveren</button>
+            </div>
+        }
+    </div>
+
+    <div class="modal fade" id="MyPopUp" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @{
+                        bool datumReserved = false;
+                        foreach (Pakket pakket in ViewBag.gereserveerdePakketten)
+                        {
+                            if (DateTime.Parse(p.OphaalTijd).Date == DateTime.Parse(pakket.OphaalTijd).Date) datumReserved = true;
+                        }
+
+                        bool pakketReserved = false;
+                        foreach (Pakket pakket in ViewBag.pakketten)
+                        {
+                            if (pakket.Id == p.Id) pakketReserved = true;
+                        }
+                    }
+                    @if (datumReserved)
+                    {
+                        <h3>Helaas</h3>
+                        <p>U heeft al een pakket gereserveerd voor deze datum.</p>
+                    }
+                    else if (pakketReserved)
+                    {
+                        <h3>Helaas</h3>
+                        <p>Dit pakket is al door een andere gebruiker gereserveerd.</p>
+                    }
+                    else if (ViewBag.iseighteen == false)
+                    {
+                        <h3>Helaas</h3>
+                        <p>Om dit pakket te reserveren moet je 18 jaar of ouder zijn.</p>
+                    }
+                    else
+                    {
+                        <h3>Bevestigen</h3>
+                        <p>Klopt het dat u dit pakket wil reserveren?</p>
+                        <a id="myInput2" asp-action="ReserveerPakket" asp-controller="Pakket" asp-route-pakketid="@p.Id" type="button" class="btn btn-custom" data-toggle="modal" data-target="#exampleModal">
+                            Bevestig
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myInput").click(function (e) {
+                $('#MyPopUp').modal('show');
+            });
+        });
+        $(document).ready(function () {
+            $("#myInput2").click(function (e) {
+                $('#MyPopUp').modal('hide');
+            });
+        });
+    </script>
+}

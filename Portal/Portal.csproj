@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,6 +9,24 @@
   <ItemGroup>
     <None Include="wwwroot\images\Account.png" />
     <None Include="wwwroot\images\home_banner.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Domain.Tests\Core.Domain.Tests.csproj" />
+    <ProjectReference Include="..\Core.DomainServices\Core.DomainServices.csproj" />
+    <ProjectReference Include="..\Domain\Core.Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure.Tests\Infrastructure.Tests.csproj" />
+    <ProjectReference Include="..\Infrastructure.TM-EF\Infrastructure.TM-EF.csproj" />
+    <ProjectReference Include="..\Portal.Tests\Portal.Tests.csproj" />
   </ItemGroup>
 
 </Project>

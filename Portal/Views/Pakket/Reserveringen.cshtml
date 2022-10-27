@@ -1,0 +1,38 @@
+﻿@using Domain;
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container row center">
+    @*CARDS*@
+    <h2 class="text-center">Gereserveerde pakketten</h2>
+    <div class="dropdown-divider text-center ms-5 ps-5 me-5 pe-5"></div>
+    <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
+        @foreach (Pakket p in ViewBag.pakketten)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="text-decoration-none text-black">
+                    <div class="card mb-3">
+                        <img class="image-card ms-auto me-auto" src="~/images/example_box.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">@p.Naam</h4>
+                            <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
+                                <h5>€@p.Prijs</h5>
+                                <ul class="card-text mb-1">
+                                    <li>@p.TypeMaaltijd</li>
+                                    <li>Beschikbaar sinds: @p.DatumTijd</li>
+                                    <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
+                                    @if (p.AchtienPlus)
+                                    {
+                                        <li>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</li>
+                                    }
+                                </ul>
+                            </div>
+                            <h6 class="text-center mt-3">Afhalen op: @p.OphaalTijd</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

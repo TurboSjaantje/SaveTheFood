@@ -1,0 +1,36 @@
+﻿@using Domain
+@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container row mb-3 center">
+    <div class="row">
+        <h2 class="text-center">Locaties</h2>
+        <div class="dropdown-divider"></div>
+    </div>
+
+    @*CARDS*@
+    <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
+
+        @foreach (Kantine k in ViewBag.kantines)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>@k.Locatie</h5>
+                        <h6>@k.Stad</h6>
+                        @if (k.WarmeMaaltijden == true)
+                        {
+                            <p>Deze locatie serveert warme maaltijden.</p>
+                        }
+                        else
+                        {
+                            <p>Deze locatie serveert geen warme maaltijden.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

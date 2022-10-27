@@ -12,66 +12,75 @@
 </head>
 
 <body>
-    <header>
-
-        @*NAVBAR*@
-        <nav id="navbar" class="navbar navbar-expand-sm navbar-toggleable-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">SaveTheFood</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <img class="navbar-toggler-icon" src="~/images/icons8-menu-100.png"></img>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+    @*NAVBAR*@
+    <nav id="navbar" class="navbar navbar-expand-sm fixed-top navbar-toggleable-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">SaveTheFood</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <img class="navbar-toggler-icon" src="~/images/icons8-menu-100.png">
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    @if (User.HasClaim("UserType", "regularuser"))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Reserveren">Reserveren</a>
                         </li>
+                    }
+                    @if (User.HasClaim("UserType", "poweruser")) {
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">Reserveren</a>
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Pakketten">Pakketten</a>
                         </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Locaties">Locaties</a>
+                    </li>
+                    @if (User.HasClaim("UserType", "poweruser"))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">Locaties</a>
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Pakketbeheer">Pakketbeheer</a>
                         </li>
+                    }
+                    @if (User.HasClaim("UserType", "regularuser"))
+                    {
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="" asp-action="">Pakketbeheer</a>
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Reserveringen">Reserveringen</a>
                         </li>
-
-                    </ul>
-                    <ul class="navbar-nav account-right">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/images/icons8-account-100.png" width="25px" height="25px"/>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Account</a></li>
-                                <li><a class="dropdown-item" href="#"></a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                    }
+                </ul>
+                <ul class="navbar-nav account-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/images/icons8-account-100.png" width="25px" height="25px" />
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" asp-action="Profiel" asp-controller="Account">Account</a></li>
+                            <li><a class="dropdown-item dropdown-item-disabled" asp-action="Logout" asp-controller="Account">Uitloggen</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
-
-    </header>
+        </div>
+    </nav>
 
     @*BODY*@
-    <div>
+    <div style="padding-top: 7vh; padding-bottom: 7vh;">
         @RenderBody()
     </div>
 
     @*FOOTER*@
-    <footer class="d-flex flex-wrap justify-content-between align-items-center border-top p-3 mb-0 p-0">
-        <p class="col-md-4 mb-0 text-muted">© 2022 SaveTheFood &trade;</p>
-
-        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-md-0 me-md-auto link-dark text-decoration-none">
-            <img class="bi me-2" width="25" height="25" src="~/images/Account.png"></img>
-        </a>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center border-top p-3 mb-0 p-0" 
+            style="bottom: 0; position: absolute; width: 100%; margin-top: 5vh;">
+        <p class="col-md-4 mb-0">© 2022 SaveTheFood &trade;</p>
 
         <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="" class="nav-link px-2 me-1 text-muted">Contact</a></li>
-            <li class="nav-item"><a href="" class="nav-link px-2 text-muted">About Us</a></li>
+            <li class="nav-item"><a asp-controller="Home" asp-action="Contact" class="nav-link px-2 me-1">Contact</a></li>
+            <li class="nav-item"><a asp-controller="Home" asp-action="AboutUs" class="nav-link px-2">About Us</a></li>
+            <li class="nav-item"><a asp-controller="Home" asp-action="FAQ" class="nav-link px-2">FAQ</a></li>
         </ul>
     </footer>
 

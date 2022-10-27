@@ -1,112 +1,117 @@
-﻿@{
+﻿@using Domain;
+@{
     Layout = "../Shared/_Layout.cshtml";
 }
 
-@*BANNER*@
-<div class="banner-container mb-3">
-    <div class="banner-overlay"></div>
-    <div class="fill">
-        <img src="~/images/home_banner.jpg" alt="Home page banner" />
-    </div>
-    <div class="row justify-content-center center">
-        <div class="col-lg-6 col-md-10 col-sm-12 hero-content text-center">
-            <h1>Lorem Ipsum</h1>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consequat justo ipsum, a scelerisque leo sodales venenatis. Vivamus ut ex at lorem tempus tristique. Etiam et ultrices lectus. Praesent sit amet tincidunt mauris. Curabitur pharetra risus porttitor, semper libero quis, consequat magna. Etiam iaculis ultricies nibh ut interdum. Aenean porttitor leo augue, id malesuada est lacinia eget. In tristique urna nulla, sed mollis metus hendrerit id.
-            </p>
-            <button class="btn btn-custom m-1">More info</button>
-        </div>
-    </div>
-</div>
 
-@*TITLE*@
-<div class="container row mb-3 center" style="margin-top: 52vh;">
-    <h2>Explore</h2>
-</div>
 
-@*CARDS*@
-<div class="container row justify-content-center mb-3 center">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <a asp-action="Meal" class="text-decoration-none text-black">
-            <div class="card mb-3">
-                <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Cart title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </a> 
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-12">
-        <div class="card mb-3">
-            <img class="card-img-top" src="~/images/example_box.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Cart title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-    </div>
-</div>
+@if (User.HasClaim("UserType", "regularuser"))
+{
 
+    @*BANNER*@
+    <div class="banner-container mb-3">
+        <div class="banner-overlay"></div>
+        <div class="fill">
+            <img src="~/images/home_banner.jpg" alt="Home page banner" />
+        </div>
+        <div class="row justify-content-center center">
+            <div class="col-lg-6 col-md-10 col-sm-12 hero-content text-center">
+                <h1>Welkom, @ViewBag.student.Naam!</h1>
+                <div class="dropdown-divider" style="border-color: transparent;"></div>
+                <p>SaveTheFood is een initiatief van Avans Hogeschool om voedselverspilling te beperken. 
+                    Op deze website kunnen kunnen pakketten gereserveerd worden, deze kunnen opgehaald worden bij de aangegeven kantines.
+                    <br>Druk hieronder om meer over ons te weten te komen!</p>
+                <button class="btn btn-custom m-1">Over Ons</button>
+            </div>
+        </div>
+    </div>
+
+    @*CARDS*@
+    <h2 class="text-center" style="margin-top: 36vh;">Ontdek pakketten</h2>
+    <div class="dropdown-divider text-center ms-5 ps-5 me-5 pe-5"></div>
+    <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
+        @foreach (Pakket p in ViewBag.pakketten)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="text-decoration-none text-black">
+                    <div class="card mb-3">
+                        <img class="image-card ms-auto me-auto" src="~/images/example_box.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">@p.Naam</h4>
+                            <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
+                                <h5>€@p.Prijs</h5>
+                                <ul class="card-text mb-1">
+                                    <li>@p.TypeMaaltijd</li>
+                                    <li>Beschikbaar sinds: @p.DatumTijd</li>
+                                    <li>Afhalen om: @p.OphaalTijd</li>
+                                    <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
+                                </ul>
+                            </div>
+                            @if (p.AchtienPlus)
+                            {
+                                <p class="card-text mt-2"><small>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</small></p>
+                            }
+                            else
+                            {
+                                <p class="card-text mt-2"><small>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</small></p>
+                            }
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}
+
+@if (User.HasClaim("UserType", "poweruser"))
+{
+    @*BANNER*@
+    <div class="banner-container mb-3">
+        <div class="banner-overlay"></div>
+        <div class="fill">
+            <img src="~/images/home_banner.jpg" alt="Home page banner" />
+        </div>
+        <div class="row justify-content-center center">
+            <div class="col-lg-6 col-md-10 col-sm-12 hero-content text-center align-baseline" style="top: 13vh;">
+                <h1>Welkom, @ViewBag.medewerker.Naam!</h1>
+                <div class="dropdown-divider" style="border-color: transparent;"></div>
+            </div>
+        </div>
+    </div>
+
+    @*CARDS*@
+    <h2 class="text-center" style="margin-top: 36vh;">Pakketten op eigen locatie</h2>
+    <div class="dropdown-divider text-center ms-5 ps-5 me-5 pe-5"></div>
+    <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
+        @foreach (Pakket p in ViewBag.pakketten)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="text-decoration-none text-black">
+                    <div class="card mb-3">
+                        <img class="image-card ms-auto me-auto" src="~/images/example_box.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">@p.Naam</h4>
+                            <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
+                                <h5>€@p.Prijs</h5>
+                                <ul class="card-text mb-1">
+                                    <li>@p.TypeMaaltijd</li>
+                                    <li>Beschikbaar sinds: @p.DatumTijd</li>
+                                    <li>Afhalen om: @p.OphaalTijd</li>
+                                    <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
+                                </ul>
+                            </div>
+                            @if (p.AchtienPlus)
+                            {
+                                <p class="card-text mt-2"><small>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</small></p>
+                            }
+                            else
+                            {
+                                <p class="card-text mt-2"><small>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</small></p>
+                            }
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}

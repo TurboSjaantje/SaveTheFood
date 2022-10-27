@@ -1,0 +1,88 @@
+﻿@model PakketViewModelUpdate
+@using Domain;
+@{
+    Layout = "../Shared/_Layout.cshtml";
+    ICollection<Product> producten = ViewBag.producten;
+}
+
+<div class="container row mb-5 center">
+    <div class="row">
+        <h1>Update pakket</h1>
+        <div class="dropdown-divider mb-3"></div>
+    </div>
+    <div class="row">
+        <form asp-action="UpdatePakket" asp-controller="Pakket" method="post">
+            <input asp-for="Id" value="@ViewBag.id" type="hidden" />
+            <div class="form-group mt-1">
+                <div><span asp-validation-for="Naam" class="text-danger"></span></div>
+                <div class="row">
+                    <label asp-for="Naam" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input asp-for="Naam" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-1">
+                <div><span asp-validation-for="TypeMaaltijd" class="text-danger"></span></div>
+                <div class="row">
+                    <label asp-for="TypeMaaltijd" class="col-sm-2 col-form-label">Type maaltijd</label>
+                    <div class="col-sm-10">
+                        <select asp-for="TypeMaaltijd" asp-items="Html.GetEnumSelectList<TypeMaaltijden>()" class="form-control"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-1">
+                <div><span asp-validation-for="Prijs" class="text-danger"></span></div>
+                <div class="row">
+                    <label asp-for="Prijs" class="col-sm-2 col-form-label">Prijs (€)</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Prijs" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-1">
+                <div><span asp-validation-for="OphaalTijd" class="text-danger"></span></div>
+                <div class="row">
+                    <label asp-for="OphaalTijd" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local" asp-for="OphaalTijd" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-1">
+                <div><span asp-validation-for="Producten" class="text-danger"></span></div>
+                <label asp-for="Producten" class="col-sm-2 col-form-label">Producten:</label>
+                <div class="dropdown-divider mb-3 mt-1"></div>
+                <div class="row">
+                    @foreach (int pid in Model.Producten.Keys)
+                    {
+                        Product product = producten.FirstOrDefault(p => p.Id == pid);
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <div class="card mb-3">
+                                <img class="card-image-top align-content-center text-center" style="height: 100px; width: auto; object-fit: scale-down;" src="@product.Foto" alt="Card image cap">
+                                <div class="card-body">
+                                    <h6 class="card-title">@product.Naam</h6>
+                                    <div class="card-inner-body">
+                                        @if (product.AlcoholHoudend)
+                                        {
+                                            <p><small>Dit product bevat alcohol.</small></p>
+                                        }
+                                        else
+                                        {
+                                            <p><small>Dit product bevat geen alcohol.</small></p>
+                                        }
+                                    </div>
+                                    <input class="form-check-input ms-auto me-auto" style="margin: auto;" type="checkbox" asp-for="Producten[pid]">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div><div class="dropdown-divider"></div></div>
+                </div>
+            </div>
+            <button class="btn btn-custom mt-2" type="submit">Pakket updaten</button>
+        </form>
+    </div>
+</div>
+
+

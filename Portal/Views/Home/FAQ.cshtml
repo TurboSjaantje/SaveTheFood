@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container row center">
+    <div class="row">
+        <h1>Frequently Asked Questions</h1>
+        <div class="dropdown-divider mb-3"></div>
+    </div>
+    @*CARDS*@
+    <div class="container row gx-2 justify-content-center center">
+        @for (var i = 0; i < 10; i++)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5>Question</h5>
+                        <h6>Description</h6>
+                        <p>Here can be more about the question. Here can be more about the question. Here can be more about the question. Here can be more about the question.</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
