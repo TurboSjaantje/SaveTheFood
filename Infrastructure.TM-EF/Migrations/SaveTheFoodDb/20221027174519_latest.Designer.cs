@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
 {
     [DbContext(typeof(SaveTheFoodDbContext))]
-    [Migration("20221025102133_second product")]
-    partial class secondproduct
+    [Migration("20221027174519_latest")]
+    partial class latest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,6 +69,50 @@ namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
                     b.ToTable("Medewerkers");
                 });
 
+            modelBuilder.Entity("Domain.Pakket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("AchtienPlus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DatumTijd")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GereserveerdDoorEmail")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OphaalTijd")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Prijs")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TypeMaaltijd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("kantineId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GereserveerdDoorEmail");
+
+                    b.HasIndex("kantineId");
+
+                    b.ToTable("Pakketten");
+                });
+
             modelBuilder.Entity("Domain.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -81,7 +125,6 @@ namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
                         .HasColumnType("bit");
 
                     b.Property<string>("Foto")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Naam")
@@ -122,6 +165,21 @@ namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
                     b.ToTable("Studenten");
                 });
 
+            modelBuilder.Entity("PakketProduct", b =>
+                {
+                    b.Property<int>("ProductenId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pakkettenId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductenId", "pakkettenId");
+
+                    b.HasIndex("pakkettenId");
+
+                    b.ToTable("PakketProduct");
+                });
+
             modelBuilder.Entity("Domain.Medewerker", b =>
                 {
                     b.HasOne("Domain.Kantine", "Locatie")
@@ -131,6 +189,38 @@ namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
                         .IsRequired();
 
                     b.Navigation("Locatie");
+                });
+
+            modelBuilder.Entity("Domain.Pakket", b =>
+                {
+                    b.HasOne("Domain.Student", "GereserveerdDoor")
+                        .WithMany()
+                        .HasForeignKey("GereserveerdDoorEmail");
+
+                    b.HasOne("Domain.Kantine", "kantine")
+                        .WithMany()
+                        .HasForeignKey("kantineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GereserveerdDoor");
+
+                    b.Navigation("kantine");
+                });
+
+            modelBuilder.Entity("PakketProduct", b =>
+                {
+                    b.HasOne("Domain.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Pakket", null)
+                        .WithMany()
+                        .HasForeignKey("pakkettenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,7 @@
 
 namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
 {
-    public partial class NewDB : Migration
+    public partial class latest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

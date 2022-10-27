@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
 {
     [DbContext(typeof(SaveTheFoodDbContext))]
-    [Migration("20221025151052_newst")]
-    partial class newst
+    [Migration("20221027173906_hoiiiii")]
+    partial class hoiiiii
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,9 +98,8 @@ namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
                     b.Property<double>("Prijs")
                         .HasColumnType("float");
 
-                    b.Property<string>("TypeMaaltijd")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("TypeMaaltijd")
+                        .HasColumnType("int");
 
                     b.Property<int>("kantineId")
                         .HasColumnType("int");

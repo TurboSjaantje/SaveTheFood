@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
+namespace Infrastructure.TM_EF.Migrations
 {
-    public partial class k : Migration
+    public partial class latest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
