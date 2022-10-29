@@ -47,7 +47,7 @@
                         }
                         else
                         {
-                            <p>Dit product bevat alcohol.</p>
+                            <p>Dit product bevat geen alcohol.</p>
                         }
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                         <h3>Helaas</h3>
                         <p>Dit pakket is al door een andere gebruiker gereserveerd.</p>
                     }
-                    else if (ViewBag.iseighteen == false)
+                    else if (ViewBag.iseighteen == false && p.AchtienPlus == true)
                     {
                         <h3>Helaas</h3>
                         <p>Om dit pakket te reserveren moet je 18 jaar of ouder zijn.</p>
