@@ -12,35 +12,39 @@
     </div>
 
     @*CARDS*@
-    <h2 class="text-center">Vrijgegeven pakektten</h2>
+    <h2 class="text-center">Vrijgegeven pakketten</h2>
     <div class="container row gx-2 justify-content-center center" style="margin-top: 2vh; margin-bottom: 5vh;">
         @foreach (Pakket p in ViewBag.vrijgegevenPakketten)
         {
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="card mb-3 text-decoration-none">
-                    <img class="image-card ms-auto me-auto" src="~/images/example_box.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">@p.Naam</h4>
-                        <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
-                            <h5>€@p.Prijs</h5>
-                            <ul class="card-text mb-1">
-                                <li>@p.TypeMaaltijd</li>
-                                <li>Beschikbaar sinds: @p.DatumTijd</li>
-                                <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
-                                @if (p.AchtienPlus)
-                                {
-                                    <li>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</li>
-                                }
-                            </ul>
+                <div class="card mb-3 text-decoration-none">
+                    <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="text-center justify-content-center">
+                        <img class="image-card ms-auto me-auto text-center" src="~/images/example_box.png" alt="Card image cap">
+                    </a>
+                    <div class="card-body text-decoration-none">
+                        <a asp-action="Box" asp-controller="Pakket" asp-route-id="@p.Id" asp-route-vorigepagina="@ViewBag.vorigePagina" class="text-decoration-none">
+                            <h4 class="card-title">@p.Naam</h4>
+                            <div class="card-inner-body" style="height: 100px; overflow-y: scroll;">
+                                <h5>€@p.Prijs</h5>
+                                <ul class="card-text mb-1">
+                                    <li>@p.TypeMaaltijd</li>
+                                    <li>Beschikbaar sinds: @p.DatumTijd</li>
+                                    <li>Locatie: @p.kantine.Stad, @p.kantine.Locatie</li>
+                                    @if (p.AchtienPlus)
+                                    {
+                                        <li>Voor het kopen van dit pakket moet u 18 jaar of ouder zijn.</li>
+                                    }
+                                </ul>
+                            </div>
+                        </a>
+                        <div class="row text-center text-decoration-none mt-3">
+                            <div class="col-sm-auto">
+                                <a class="btn btn-custom-secondary" type="button" asp-action="UpdatePakket" asp-controller="Pakket" asp-route-pakketid="@p.Id"><img src="~/images/icons8-pencil-30.png"/></a>
+                            </div>
+                            <div class="col-sm-auto">
+                                <button class="deleteInput btn btn-custom-secondary" onclick="@(pakketid = p.Id)" type="button" data-toggle="modal" data-target="#deleteModal"><img src="~/images/icons8-remove-30.png" /></button>
+                            </div>
                         </div>
-                    </div>
-                </a>
-                <div class="row text-center text-decoration-none mb-3">
-                    <div class="col col-sm-6">
-                        <a class="btn btn-custom-secondary" asp-action="UpdatePakket" asp-controller="Pakket" asp-route-pakketid="@p.Id">Bewerken</a>
-                    </div>
-                    <div class="col col-sm-6">
-                        <button id="deleteInput" onclick="@(pakketid = p.Id)" type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-custom-secondary">Verwijderen</button>
                     </div>
                 </div>
             </div>
@@ -96,7 +100,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#deleteInput").click(function (e) {
+            $(".deleteInput").click(function (e) {
                 $('#deleteModal').modal('show')
             });
         });

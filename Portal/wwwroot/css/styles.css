@@ -30,6 +30,10 @@ ul {
     color: #f3ebcb;
 }
 
+#navbar, .navbar {
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+}
+
 footer {
     background-color: #456000;
     color: #f3ebcb;
@@ -53,11 +57,12 @@ footer {
 .card {
     border: 2px solid;
     border-color: #627a26;
+    box-shadow: 10px 10px 15px rgba(0,0,0,.2);
 }
 
-.card-body {
+.card-body, .card-body a {
     background-color: #627a26;
-    color: #f3ebcb;
+    color: white;
 }
 
 .fill {
@@ -99,20 +104,6 @@ footer {
     padding: 5vh;
     height: 40vh;
     overflow: hidden;
-}
-
-.login-content {
-    z-index: 2;
-    position: absolute;
-    margin: auto;
-    top: 6vh;
-    color: white;
-    padding: 5vh;
-    width: 80%;
-    height: 60%;
-    overflow: hidden;
-    -ms-transform: translate(50%, 50%);
-    transform: translate(10%, 20%);
 }
 
 @media (min-width: 768px) {
@@ -181,6 +172,7 @@ footer {
     color: #f8edcf;
     padding: 10px;
     border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0,0,0,.2);
 }
 
 .modal-content {
@@ -220,13 +212,13 @@ footer {
     border-color: #8BAD34;
 }
 
-.btn-custom-secondary {
+.btn-custom-secondary, a.btn-custom-secondary {
     color: #f3ebcb;
     background-color: #80b300;
 }
 
 .btn-custom-secondary-outline {
-    color: #80b300;
+    color: white;
     border-color: #80b300;
 }
 
@@ -236,7 +228,7 @@ footer {
     border-color: #80b300;
 }
 
-.btn-custom-outline.active {
-    background-color: #8BAD34;
-    color: #f3ebcb;
+.btn-custom-secondary-outline.active {
+    background-color: #80b300;
+    color: black;
 }

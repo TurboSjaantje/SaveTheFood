@@ -81,7 +81,7 @@ namespace Infrastructure.TM_EF
                 Producten = new Collection<Product> { product3, product4, product5 },
                 kantine = kantine1,
                 DatumTijd = DateTime.Now.AddDays(-1).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(),
-                OphaalTijd = DateTime.Now.AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(),
+                OphaalTijd = DateTime.Now.AddDays(1).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(),
                 AchtienPlus = true,
                 Prijs = 6.71,
                 TypeMaaltijd = TypeMaaltijden.MiddagBorrel,

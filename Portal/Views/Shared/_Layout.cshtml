@@ -15,51 +15,51 @@
     @*NAVBAR*@
     <nav id="navbar" class="navbar navbar-expand-sm fixed-top navbar-toggleable-sm">
         <div class="container-fluid">
-            <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">SaveTheFood</a>
+            <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" height="35px" width="auto" style="margin-bottom: 5px;"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <img class="navbar-toggler-icon" src="~/images/icons8-menu-100.png">
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                <ul class="navbar-nav flex-grow-1" aria-hidden="true">
+                    <li class="nav-item" aria-hidden="true">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index" aria-valuetext="Home">Home</a>
                     </li>
                     @if (User.HasClaim("UserType", "regularuser"))
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Pakket" asp-action="Reserveren">Reserveren</a>
+                        <li class="nav-item" aria-hidden="true">
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Reserveren" aria-valuetext="Reserveren">Reserveren</a>
                         </li>
                     }
                     @if (User.HasClaim("UserType", "poweruser")) {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Pakket" asp-action="Pakketten">Pakketten</a>
+                        <li class="nav-item" aria-hidden="true">
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Pakketten" aria-valuetext="Pakketten">Pakketten</a>
                         </li>
                     }
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Locaties">Locaties</a>
+                    <li class="nav-item" aria-hidden="true">
+                        <a class="nav-link" asp-controller="Home" asp-action="Locaties" aria-valuetext="Locaties">Locaties</a>
                     </li>
                     @if (User.HasClaim("UserType", "poweruser"))
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Pakket" asp-action="Pakketbeheer">Pakketbeheer</a>
+                        <li class="nav-item" aria-hidden="true">
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Pakketbeheer" aria-valuetext="Pakketbeheer">Pakketbeheer</a>
                         </li>
                     }
                     @if (User.HasClaim("UserType", "regularuser"))
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Pakket" asp-action="Reserveringen">Reserveringen</a>
+                        <li class="nav-item" aria-hidden="true">
+                            <a class="nav-link" asp-controller="Pakket" asp-action="Reserveringen" aria-valuetext="Reserveringen">Reserveringen</a>
                         </li>
                     }
                 </ul>
-                <ul class="navbar-nav account-right">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="~/images/icons8-account-100.png" width="25px" height="25px" />
+                <ul class="navbar-nav account-right" aria-hidden="true">
+                    <li class="nav-item dropdown" aria-hidden="true">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-hidden="true">
+                            <img src="~/images/icons8-account-100.png" width="25px" height="25px" aria-valuetext="Account"/>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" asp-action="Profiel" asp-controller="Account">Account</a></li>
-                            <li><a class="dropdown-item dropdown-item-disabled" asp-action="Logout" asp-controller="Account">Uitloggen</a></li>
+                            <li><a class="dropdown-item" asp-action="Profiel" asp-controller="Account" aria-valuetext="Account">Account</a></li>
+                            <li><a class="dropdown-item dropdown-item-disabled" asp-action="Logout" asp-controller="Account" aria-valuetext="Uitloggen">Uitloggen</a></li>
                         </ul>
                     </li>
                 </ul>
