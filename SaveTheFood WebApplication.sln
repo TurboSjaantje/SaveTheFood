@@ -9,19 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{4F264DFE-39E1-47B4-BC61-D95B8B7E221C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain", "Domain\Core.Domain.csproj", "{AE3EAE87-AFC0-4916-8358-64DF9EE751F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Domain", "Domain\Core.Domain.csproj", "{AE3EAE87-AFC0-4916-8358-64DF9EE751F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Domain.Tests", "Core.Domain.Tests\Core.Domain.Tests.csproj", "{F81D36E7-CDF2-4AD0-987E-1CD8B230CB89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Domain.Tests", "Core.Domain.Tests\Core.Domain.Tests.csproj", "{F81D36E7-CDF2-4AD0-987E-1CD8B230CB89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DomainServices", "Core.DomainServices\Core.DomainServices.csproj", "{A7A3FF20-B56C-4432-8173-DCC316BF1A33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.DomainServices", "Core.DomainServices\Core.DomainServices.csproj", "{A7A3FF20-B56C-4432-8173-DCC316BF1A33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{CA2ABC4C-EF9F-4F65-8DAF-C4146E0A8760}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{CA2ABC4C-EF9F-4F65-8DAF-C4146E0A8760}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.TM-EF", "Infrastructure.TM-EF\Infrastructure.TM-EF.csproj", "{BF255D1A-3722-475A-BDBC-E7F4549CD80C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.TM-EF", "Infrastructure.TM-EF\Infrastructure.TM-EF.csproj", "{BF255D1A-3722-475A-BDBC-E7F4549CD80C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{B37BD66B-F1F3-435B-87B3-4848FBF05B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal", "Portal\Portal.csproj", "{B37BD66B-F1F3-435B-87B3-4848FBF05B05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Tests", "Portal.Tests\Portal.Tests.csproj", "{D1EA937B-07F5-4BBF-B620-C46752C5B984}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Tests", "Portal.Tests\Portal.Tests.csproj", "{D1EA937B-07F5-4BBF-B620-C46752C5B984}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{85C8CDCB-E9B0-43CF-ACA7-AE26EE0C9BB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{D1EA937B-07F5-4BBF-B620-C46752C5B984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1EA937B-07F5-4BBF-B620-C46752C5B984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1EA937B-07F5-4BBF-B620-C46752C5B984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85C8CDCB-E9B0-43CF-ACA7-AE26EE0C9BB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85C8CDCB-E9B0-43CF-ACA7-AE26EE0C9BB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85C8CDCB-E9B0-43CF-ACA7-AE26EE0C9BB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85C8CDCB-E9B0-43CF-ACA7-AE26EE0C9BB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{BF255D1A-3722-475A-BDBC-E7F4549CD80C} = {90F0AF7B-4B3E-4F78-AAA7-115C0B6EB89D}
 		{B37BD66B-F1F3-435B-87B3-4848FBF05B05} = {4F264DFE-39E1-47B4-BC61-D95B8B7E221C}
 		{D1EA937B-07F5-4BBF-B620-C46752C5B984} = {4F264DFE-39E1-47B4-BC61-D95B8B7E221C}
+		{85C8CDCB-E9B0-43CF-ACA7-AE26EE0C9BB8} = {4F264DFE-39E1-47B4-BC61-D95B8B7E221C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {550C1230-A8E5-4CA0-9197-AD3B39E1864B}
