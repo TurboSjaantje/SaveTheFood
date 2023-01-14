@@ -3,18 +3,16 @@ using Infrastructure.TM_EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.TM_EF.Migrations.SaveTheFoodDb
+namespace Infrastructure.TM_EF.Migrations
 {
     [DbContext(typeof(SaveTheFoodDbContext))]
-    [Migration("20221027173906_hoiiiii")]
-    partial class hoiiiii
+    partial class SaveTheFoodDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

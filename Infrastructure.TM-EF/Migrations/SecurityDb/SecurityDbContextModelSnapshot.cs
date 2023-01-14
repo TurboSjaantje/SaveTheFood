@@ -4,18 +4,16 @@ using Infrastructure.TM_EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.TM_EF.Migrations
+namespace Infrastructure.TM_EF.Migrations.SecurityDb
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20221021114816_First")]
-    partial class First
+    partial class SecurityDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

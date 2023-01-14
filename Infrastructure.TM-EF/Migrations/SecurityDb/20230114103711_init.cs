@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Infrastructure.TM_EF.Migrations
+namespace Infrastructure.TM_EF.Migrations.SecurityDb
 {
-    public partial class First : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
