@@ -1,4 +1,5 @@
 using Core.DomainServices;
+using Core.DomainServices.Services;
 using Infrastructure.TM_EF;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,11 @@ builder.Services
         .AddScoped<SaveTheFoodSeedData>()
         .AddScoped<IdentitySeedData>()
         .AddScoped<IKantineRepository, KantineRepository>()
-        .AddScoped<IProductRepository, ProductRepository>() 
-        .AddScoped<IStudentRepository, StudentRepository>() 
+        .AddScoped<IProductRepository, ProductRepository>()
+        .AddScoped<IStudentRepository, StudentRepository>()
         .AddScoped<IMedewerkerRepository, MedewerkerRepository>()
         .AddScoped<IPakketRepository, PakketRepository>()
+        .AddScoped<IReserveerService, ReserveerService>()
 
         //Seed Kantines options
         .AddDbContext<SaveTheFoodDbContext>(opts =>

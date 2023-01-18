@@ -5,6 +5,14 @@
 }
 
 <div class="container row mb-5 center">
+    @if (ViewBag.error != null)
+    {
+        <div class="d-flex justify-content-center">
+            <div class="container-custom text-center justify-content-center px-5 py-3" style="width: fit-content !important;">
+                <h3>@ViewBag.error</h3>
+            </div>
+        </div>
+    }
     <div class="row">
         <h2>@p.Naam</h2>
     </div>
@@ -53,7 +61,9 @@
                 </div>
             </div>
         }
-        <div><div class="dropdown-divider"></div></div>
+        <div>
+            <div class="dropdown-divider"></div>
+        </div>
     </div>
 
     <div class="row">
@@ -77,71 +87,17 @@
         {
             <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Pakketbeheer" asp-controller="Pakket">Terug</a></div>
         }
+        else
+        {
+            <div class="col-sm-6 text-start"><a class="btn btn-custom" asp-action="Reserveren" asp-controller="Pakket">Terug</a></div>
+        }
         @if (p.GereserveerdDoor == null && User.HasClaim("UserType", "regularuser"))
         {
             <div class="col-sm-6 text-end">
-                <button id="myInput" type="button" class="btn btn-custom" data-toggle="modal" data-target="#exampleModal">Reserveren</button>
+                <a id="myInput" asp-action="ReserveerPakket" asp-controller="Pakket" asp-route-pakketid="@p.Id" type="button" class="btn btn-custom" data-toggle="modal" data-target="#exampleModal">Reserveren</a>
             </div>
         }
     </div>
-
-    <div class="modal fade" id="MyPopUp" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    @{
-                        bool datumReserved = false;
-                        foreach (Pakket pakket in ViewBag.gereserveerdePakketten)
-                        {
-                            if (DateTime.Parse(p.OphaalTijd).Date == DateTime.Parse(pakket.OphaalTijd).Date) datumReserved = true;
-                        }
-
-                        bool pakketReserved = false;
-                        foreach (Pakket pakket in ViewBag.pakketten)
-                        {
-                            if (pakket.Id == p.Id) pakketReserved = true;
-                        }
-                    }
-                    @if (datumReserved)
-                    {
-                        <h3>Helaas</h3>
-                        <p>U heeft al een pakket gereserveerd voor deze datum.</p>
-                    }
-                    else if (pakketReserved)
-                    {
-                        <h3>Helaas</h3>
-                        <p>Dit pakket is al door een andere gebruiker gereserveerd.</p>
-                    }
-                    else if (ViewBag.iseighteen == false && p.AchtienPlus == true)
-                    {
-                        <h3>Helaas</h3>
-                        <p>Om dit pakket te reserveren moet je 18 jaar of ouder zijn.</p>
-                    }
-                    else
-                    {
-                        <h3>Bevestigen</h3>
-                        <p>Klopt het dat u dit pakket wil reserveren?</p>
-                        <a id="myInput2" asp-action="ReserveerPakket" asp-controller="Pakket" asp-route-pakketid="@p.Id" type="button" class="btn btn-custom" data-toggle="modal" data-target="#exampleModal">
-                            Bevestig
-                        </a>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
-@section scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#myInput").click(function (e) {
-                $('#MyPopUp').modal('show');
-            });
-        });
-        $(document).ready(function () {
-            $("#myInput2").click(function (e) {
-                $('#MyPopUp').modal('hide');
-            });
-        });
-    </script>
-}
+

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Portal.ViewModels;
 using System.Collections.ObjectModel;
+using Core.DomainServices.Services;
 
 namespace Portal.Controllers
 {
@@ -16,14 +17,16 @@ namespace Portal.Controllers
         private readonly IMedewerkerRepository _medewerkerRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly IKantineRepository _kantineRepository;
+        private readonly IReserveerService _reserveerService;
 
-        public PakketController(IProductRepository productRepository, IStudentRepository studentRepository, IPakketRepository pakketRepository, IMedewerkerRepository medewerkerRepository, IKantineRepository kantineRepository)
+        public PakketController(IReserveerService reserveerService, IProductRepository productRepository, IStudentRepository studentRepository, IPakketRepository pakketRepository, IMedewerkerRepository medewerkerRepository, IKantineRepository kantineRepository)
         {
             _productRepository = productRepository;
             _pakketRepository = pakketRepository;
             _medewerkerRepository = medewerkerRepository;
             _studentRepository = studentRepository;
             _kantineRepository = kantineRepository;
+            _reserveerService = reserveerService;
         }
 
         [Authorize(Policy = "OnlyRegularUsersAndUp")]
@@ -41,7 +44,17 @@ namespace Portal.Controllers
             Student student = _studentRepository.ReadStudent(User.Identity.Name.ToString());
             Pakket pakket = _pakketRepository.ReadPakket(pakketid);
 
-            _pakketRepository.ReserveerPakket(pakket, student);
+            try
+            {
+                this._reserveerService.reserveerPakket(student, pakket);
+            }
+            catch (Exception e)
+            {
+                ViewBag.error = e.Message;
+                ViewBag.pakket = pakket;
+                return View("Box", ViewBag);
+            }
+            // _pakketRepository.ReserveerPakket(pakket, student);
 
             return RedirectToAction("Reserveringen");
         }
@@ -72,12 +85,11 @@ namespace Portal.Controllers
             ViewBag.pakket = _pakketRepository.ReadPakket(id);
             ViewBag.gereserveerdePakketten = _pakketRepository.Pakketten.Where(p => p.GereserveerdDoor != null && p.GereserveerdDoor.Email.Equals(User.Identity.Name.ToString()));
             ViewBag.pakketten = _pakketRepository.Pakketten.Where(p => p.GereserveerdDoor != null);
-            if (User.HasClaim("UserType","regularuser"))
+            if (User.HasClaim("UserType", "regularuser"))
             {
                 ViewBag.iseighteen = false;
                 DateTime ophaalDatum = DateTime.Parse(_pakketRepository.ReadPakket(id).OphaalTijd);
                 DateTime geboorteDatum = DateTime.Parse(_studentRepository.ReadStudent(User.Identity.Name.ToString()).GeboorteDatum);
-                TimeSpan timeSpan = new TimeSpan();
                 if ((ophaalDatum - geboorteDatum).TotalDays > (18 * 365)) ViewBag.iseighteen = true;
             }
             ViewBag.vorigePagina = vorigepagina;
