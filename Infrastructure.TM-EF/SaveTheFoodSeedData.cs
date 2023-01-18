@@ -37,6 +37,7 @@ namespace Infrastructure.TM_EF
 
             //Declaring student
             Student student1 = new Student { Email = "user@gmail.com", Naam = "Daan van der Meulen", StudentNummer = 2189862, GeboorteDatum = DateTime.Now.AddYears(-15).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Breda", TelefoonNummer = "0631490687" };
+            Student student2 = new Student { Email = "peter@gmail.com", Naam = "Peter van der Meulen", StudentNummer = 1234567, GeboorteDatum = DateTime.Now.AddYears(-15).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Breda", TelefoonNummer = "0631490687" };
 
             //Declaring kantines
             Kantine kantine1 = new Kantine { Locatie = "Hogeschoollaan 1", Stad = "Breda", WarmeMaaltijden = false };
@@ -69,7 +70,8 @@ namespace Infrastructure.TM_EF
                 Producten = new Collection<Product> { product1, product2 },
                 kantine = kantine1,
                 DatumTijd = DateTime.Now.AddDays(-1).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(),
-                OphaalTijd = DateTime.Now.AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(),
+                OphaalTijd = DateTime.Now.AddDays(1).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now
+                .Millisecond).ToString(),
                 AchtienPlus = false,
                 Prijs = 4.50,
                 TypeMaaltijd = TypeMaaltijden.WarmeMaaltijd,
@@ -164,6 +166,7 @@ namespace Infrastructure.TM_EF
             //Studenten seeden
             _logger.LogInformation("Preparing to seed Students");
             _context.Studenten.Add(student1);
+            _context.Studenten.Add(student2);
 
             //Kantines seeden
             _logger.LogInformation("Preparing to seed Kantines");

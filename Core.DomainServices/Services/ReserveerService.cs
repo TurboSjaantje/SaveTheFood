@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,19 +35,29 @@ namespace Core.DomainServices.Services
 
         public bool? nogNietGereserveerd(Student student, Pakket pakket)
         {
-            throw new NotImplementedException();
+            Pakket tempPakket = _pakketRepository.ReadPakket(pakket.Id);
+            if (tempPakket.GereserveerdDoor != null)
+                throw new Exception("Dit pakket is al gereserveerd door een andere student");
+            else return true;
         }
 
         public bool? nogGeenReserveringVoorAfhaaldatum(Student student, Pakket pakket)
         {
-            if (this._pakketRepository.Pakketten.filter(p => p.GereserveerdDoor == student && DateTime.Parse(p.OphaalTijd) == DateTime.Parse(pakket.OphaalTijd)).Count() > 0)
+            List<Pakket> pakketten = _pakketRepository.Pakketten.Where(p => p.GereserveerdDoor == student).ToList();
+            foreach (Pakket loopPakket in pakketten)
             {
-                throw new Exception("Je hebt al een pakket gereserveerd voor deze datum");
+                if (loopPakket.OphaalTijd == pakket.OphaalTijd && loopPakket.GereserveerdDoor == student)
+                    throw new Exception("Je hebt al een pakket gereserveerd voor deze datum");
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
+        }
+
+        public bool? pakketBestaat(Pakket pakket)
+        {
+            if (_pakketRepository.Pakketten.Where(p => p.Id == pakket.Id).FirstOrDefault() == null)
+                throw new Exception("Pakket bestaat niet meer");
+            else return true;
         }
 
         public bool? reserveerPakket(Student student, Pakket pakket)
@@ -54,6 +65,9 @@ namespace Core.DomainServices.Services
             try
             {
 
+                try { this.pakketBestaat(pakket); }
+                catch (Exception e) { throw new Exception(e.Message); }
+                
                 try { this.ouderDanAchtien(student, pakket); }
                 catch (Exception e) { throw new Exception(e.Message); }
 
@@ -62,7 +76,9 @@ namespace Core.DomainServices.Services
 
                 try { this.nogNietGereserveerd(student, pakket); }
                 catch (Exception e) { throw new Exception(e.Message); }
-
+                
+                this._pakketRepository.ReserveerPakket(pakket, student);
+                
                 return true;
             }
             catch (Exception e)
