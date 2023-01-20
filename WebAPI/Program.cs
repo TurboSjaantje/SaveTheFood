@@ -1,80 +1,56 @@
 using Core.DomainServices;
-using GraphQL.Server.Ui.Playground;
+using HotChocolate.AspNetCore;
+using HotChocolate.AspNetCore.Playground;
 using Infrastructure.TM_EF;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebAPI;
 using WebAPI.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+builder.Services.AddDbContext<SaveTheFoodDbContext>(opts => opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 builder.Services
     .AddControllers()
-    .AddNewtonsoftJson(options =>
-    {
-        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-    });
+    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
 builder.Services
     .AddScoped<SaveTheFoodSeedData>()
     .AddScoped<IPakketRepository, PakketRepository>()
     .AddScoped<IProductRepository, ProductRepository>()
-    .AddScoped<PakketQuery>()
-    .AddScoped<PakketMutation>()
-    .AddScoped<ProductQuery>()
-    .AddScoped<ProductMutation>()
-    .AddGraphQL(c => SchemaBuilder.New().AddServices(c)
-        .AddType<PakketGraphQLTypes>()
-        .AddQueryType<PakketQuery>()
-        .AddMutationType<PakketMutation>()
-        .Create())
-    .AddGraphQL(c => SchemaBuilder.New().AddServices(c)
-        .AddType<ProductGraphQLTypes>()
-        .AddQueryType<ProductQuery>()
-        .AddMutationType<ProductMutation>()
-        .Create())
+    .AddScoped<IStudentRepository, StudentRepository>()
+    .AddScoped<PakketQuery>();
 
-    //Seed Kantines options
-    .AddDbContext<SaveTheFoodDbContext>(opts =>
-    {
-        opts
-            .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
-            .EnableSensitiveDataLogging(true);
-    });
+builder.Services
+    .AddGraphQL(
+        pakket => SchemaBuilder.New().AddServices(pakket)
+            .AddType<PakketGraphQLTypes>()
+            .AddQueryType<PakketQuery>()
+            .Create());
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
     app.UseDeveloperExceptionPage();
-    //await SeedDatabase();
+    app.UsePlayground(new PlaygroundOptions
+    {
+        QueryPath = "/api",
+        Path = "/playground"
+    });
 }
-else
-{
-    //await SeedDatabase();
-}
+
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
+app.UseRouting();
 app.MapGraphQL("/api");
 app.MapControllers();
 
+
 app.Run();
-
-async Task SeedDatabase()
-{
-    using var scope = app.Services.CreateScope();
-
-    var SaveTheFoodSeeder = scope.ServiceProvider.GetRequiredService<SaveTheFoodSeedData>();
-    await SaveTheFoodSeeder.EnsurePopulated(true);
-}
