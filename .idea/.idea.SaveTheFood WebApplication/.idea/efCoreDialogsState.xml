@@ -4,7 +4,7 @@
     <option name="keyValueStorage">
       <map>
         <entry key="Common:buildConfiguration" value="Debug" />
-        <entry key="Common:dbContext" value="Infrastructure.TM_EF.SaveTheFoodDbContext" />
+        <entry key="Common:dbContext" value="Infrastructure.TM_EF.SecurityDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
         <entry key="Common:useDefaultConnection" value="true" />

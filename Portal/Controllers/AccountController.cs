@@ -5,6 +5,7 @@ using System.Security.Claims;
 using Portal.ViewModels;
 using Core.DomainServices;
 using Domain;
+using Domain.Extensions;
 
 namespace Portal.Controllers;
 public class AccountController : Controller
@@ -66,7 +67,9 @@ public class AccountController : Controller
         }
         else if (User.HasClaim("UserType", "regularuser"))
         {
-            ViewBag.student = _studentRepository.ReadStudent(User.Identity.Name.ToString());
+            Student student = _studentRepository.ReadStudent(User.Identity.Name.ToString());
+            ViewBag.student = student;
+            ViewBag.age = student.GetAge();
         }
 
         return View("Profiel", ViewBag);

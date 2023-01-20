@@ -21,12 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core.Domain.Tests\Core.Domain.Tests.csproj" />
     <ProjectReference Include="..\Core.DomainServices\Core.DomainServices.csproj" />
     <ProjectReference Include="..\Domain\Core.Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure.Tests\Infrastructure.Tests.csproj" />
     <ProjectReference Include="..\Infrastructure.TM-EF\Infrastructure.TM-EF.csproj" />
-    <ProjectReference Include="..\Portal.Tests\Portal.Tests.csproj" />
   </ItemGroup>
 
 </Project>
