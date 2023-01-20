@@ -3,12 +3,12 @@
   <component name="EfCoreCommonOptions">
     <option name="migrationsToStartupProjects">
       <map>
-        <entry key="bf255d1a-3722-475a-bdbc-e7f4549cd80c" value="bf255d1a-3722-475a-bdbc-e7f4549cd80c" />
+        <entry key="bf255d1a-3722-475a-bdbc-e7f4549cd80c" value="b37bd66b-f1f3-435b-87b3-4848fbf05b05" />
       </map>
     </option>
     <option name="startupToMigrationsProjects">
       <map>
-        <entry key="bf255d1a-3722-475a-bdbc-e7f4549cd80c" value="bf255d1a-3722-475a-bdbc-e7f4549cd80c" />
+        <entry key="b37bd66b-f1f3-435b-87b3-4848fbf05b05" value="bf255d1a-3722-475a-bdbc-e7f4549cd80c" />
       </map>
     </option>
   </component>
