@@ -16,6 +16,10 @@ namespace Core.DomainServices.Services
 
         bool? nogGeenReserveringVoorAfhaaldatum(Student student, Pakket pakket);
 
+        bool? pakketBestaat(Pakket pakket);
+
+        public bool? SaveChanges(Pakket pakket, Student student);
+
         bool? reserveerPakket(Student student, Pakket pakket);
 
     }

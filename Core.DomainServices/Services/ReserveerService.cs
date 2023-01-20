@@ -35,7 +35,7 @@ namespace Core.DomainServices.Services
 
         public bool? nogNietGereserveerd(Student student, Pakket pakket)
         {
-            Pakket tempPakket = _pakketRepository.ReadPakket(pakket.Id);
+            Pakket tempPakket = _pakketRepository.ReadPakket(pakket.Id) ?? null;
             if (tempPakket.GereserveerdDoor != null)
                 throw new Exception("Dit pakket is al gereserveerd door een andere student");
             else return true;
@@ -60,6 +60,20 @@ namespace Core.DomainServices.Services
             else return true;
         }
 
+        public bool? SaveChanges(Pakket pakket, Student student)
+        {
+            try
+            {
+                Pakket pakket2 = this._pakketRepository.ReserveerPakket(pakket, student);
+                if (pakket2 != null) return true;
+                else throw new Exception("Pakket kan niet gereserveerd worden");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Pakket kan niet gereserveerd worden");
+            }
+        }
+
         public bool? reserveerPakket(Student student, Pakket pakket)
         {
             try
@@ -77,8 +91,9 @@ namespace Core.DomainServices.Services
                 try { this.nogNietGereserveerd(student, pakket); }
                 catch (Exception e) { throw new Exception(e.Message); }
                 
-                this._pakketRepository.ReserveerPakket(pakket, student);
-                
+                try { this.SaveChanges(pakket, student); }
+                catch (Exception e) { throw new Exception(e.Message); }
+
                 return true;
             }
             catch (Exception e)
