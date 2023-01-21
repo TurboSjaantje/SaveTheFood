@@ -234,6 +234,8 @@ public class IReserveerServiceTest
             TypeMaaltijd = TypeMaaltijden.WarmeMaaltijd,
             GereserveerdDoor = student
         };
+        pakket1.Id = 1;
+        pakket2.Id = 2;
         
         var mockPakketRepo = new Mock<IPakketRepository>();
         mockPakketRepo.Setup(x => x.Pakketten).Returns(new List<Pakket> { pakket2 });
@@ -441,6 +443,9 @@ public class IReserveerServiceTest
             TypeMaaltijd = TypeMaaltijden.WarmeMaaltijd,
             GereserveerdDoor = student
         };
+
+        pakket1.Id = 1;
+        pakket2.Id = 2;
         
         var mockPakketRepo = new Mock<IPakketRepository>();
         mockPakketRepo.SetupSequence(x => x.Pakketten)
