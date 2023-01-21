@@ -186,7 +186,7 @@ public class IReserveerServiceTest
             TypeMaaltijd = TypeMaaltijden.WarmeMaaltijd,
             GereserveerdDoor = null
         };
-        Pakket pakket3 = new Pakket
+        Pakket pakket2 = new Pakket
         {
             Naam = "a",
             Producten = null,
@@ -200,7 +200,7 @@ public class IReserveerServiceTest
         };
         
         var mockPakketRepo = new Mock<IPakketRepository>();
-        mockPakketRepo.Setup(x => x.Pakketten).Returns(new List<Pakket> { pakket3 });
+        mockPakketRepo.Setup(x => x.Pakketten).Returns(new List<Pakket> { pakket2 });
         var reserveerService = new ReserveerService(mockPakketRepo.Object);
 
         Assert.True(reserveerService.nogGeenReserveringVoorAfhaaldatum(student, pakket1));
