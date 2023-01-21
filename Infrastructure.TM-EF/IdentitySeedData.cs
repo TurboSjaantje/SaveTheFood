@@ -52,13 +52,13 @@ namespace Infrastructure.TM_EF
                 await _userManager.AddClaimAsync(_regularUser, new Claim(CLAIMNAME_USERTYPE, "regularuser"));
             }
             
-            IdentityUser _regularUser = await _userManager.FindByIdAsync(USERNAME_REGULARUSER2);
-            if (_regularUser == null)
+            IdentityUser _regularUser2 = await _userManager.FindByIdAsync(USERNAME_REGULARUSER2);
+            if (_regularUser2 == null)
             {
-                _regularUser = new IdentityUser(USERNAME_REGULARUSER2);
+                _regularUser2 = new IdentityUser(USERNAME_REGULARUSER2);
 
-                await _userManager.CreateAsync(_regularUser, PASSWORD);
-                await _userManager.AddClaimAsync(_regularUser, new Claim(CLAIMNAME_USERTYPE, "regularuser"));
+                await _userManager.CreateAsync(_regularUser2, PASSWORD);
+                await _userManager.AddClaimAsync(_regularUser2, new Claim(CLAIMNAME_USERTYPE, "regularuser"));
             }
 
         }
