@@ -57,6 +57,7 @@ namespace Infrastructure.TM_EF
 
             //Declaring medewerker
             Medewerker medewerker1 = new Medewerker { Email = "admin@gmail.com", Locatie = kantine1, Naam = "Johan Pietersz", PersoneelsNummer = 1578965 };
+            Medewerker medewerker2 = new Medewerker { Email = "admin2@gmail.com", Locatie = kantine3, Naam = "Freek van Hoogh", PersoneelsNummer = 1576785 };
 
             //Declaring producten
             Product product1 = new Product { Naam = "Spinazie", AlcoholHoudend = false, Foto = "/images/product_spinazie.jpg" };
@@ -181,6 +182,7 @@ namespace Infrastructure.TM_EF
             //Medewerkers
             _logger.LogInformation("Preparing to seed Medewerkers");
             _context.Medewerkers.Add(medewerker1);
+            _context.Medewerkers.Add(medewerker2);
 
             //Producten
             _logger.LogInformation("Preparing to seed Producten");

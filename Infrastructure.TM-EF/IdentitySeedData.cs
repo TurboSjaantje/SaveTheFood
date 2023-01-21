@@ -23,6 +23,7 @@ namespace Infrastructure.TM_EF
             const string PASSWORD = "Secret123$";
 
             const string USERNAME_POWERUSER = "admin@gmail.com";
+            const string USERNAME_POWERUSER2 = "admin2@gmail.com";
             const string USERNAME_REGULARUSER = "user@gmail.com";
             const string USERNAME_REGULARUSER2 = "peter@gmail.com";
 
@@ -30,9 +31,17 @@ namespace Infrastructure.TM_EF
             if (powerUser != null)
                 await _userManager.DeleteAsync(powerUser);
 
+            var powerUser2 = await _userManager.FindByNameAsync(USERNAME_POWERUSER2);
+            if (powerUser2 != null)
+                await _userManager.DeleteAsync(powerUser2);
+            
             var regularUser = await _userManager.FindByNameAsync(USERNAME_REGULARUSER);
             if (regularUser != null)
                 await _userManager.DeleteAsync(regularUser);
+            
+            var regularUser2 = await _userManager.FindByNameAsync(USERNAME_REGULARUSER2);
+            if (regularUser2 != null)
+                await _userManager.DeleteAsync(regularUser2);
 
             IdentityUser _powerUser = await _userManager.FindByIdAsync(USERNAME_POWERUSER);
             if (_powerUser == null)
@@ -41,6 +50,15 @@ namespace Infrastructure.TM_EF
 
                 await _userManager.CreateAsync(_powerUser, PASSWORD);
                 await _userManager.AddClaimAsync(_powerUser, new Claim(CLAIMNAME_USERTYPE, "poweruser"));
+            }
+            
+            IdentityUser _powerUser2 = await _userManager.FindByIdAsync(USERNAME_POWERUSER2);
+            if (_powerUser2 == null)
+            {
+                _powerUser2 = new IdentityUser(USERNAME_POWERUSER2);
+
+                await _userManager.CreateAsync(_powerUser2, PASSWORD);
+                await _userManager.AddClaimAsync(_powerUser2, new Claim(CLAIMNAME_USERTYPE, "poweruser"));
             }
 
             IdentityUser _regularUser = await _userManager.FindByIdAsync(USERNAME_REGULARUSER);
