@@ -46,7 +46,9 @@ namespace Core.DomainServices.Services
             List<Pakket> pakketten = _pakketRepository.Pakketten.Where(p => p.GereserveerdDoor == student).ToList();
             foreach (Pakket loopPakket in pakketten)
             {
-                if (loopPakket.OphaalTijd == pakket.OphaalTijd && loopPakket.GereserveerdDoor == student)
+                if (DateTime.Parse(loopPakket.OphaalTijd).DayOfYear == DateTime.Parse(pakket.OphaalTijd).DayOfYear && 
+                loopPakket.Id != 
+                pakket.Id)
                     throw new Exception("Je hebt al een pakket gereserveerd voor deze datum");
             }
 
