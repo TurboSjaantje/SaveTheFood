@@ -14,15 +14,13 @@ public class AccountController : Controller
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IStudentRepository _studentRepository;
     private readonly IMedewerkerRepository _medewerkerRepository;
-    private readonly IKantineRepository _kantineRepository;
 
-    public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IStudentRepository studentRepository, IKantineRepository kantineRepository, IMedewerkerRepository medewerkerRepository)
+    public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IStudentRepository studentRepository, IMedewerkerRepository medewerkerRepository)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _studentRepository = studentRepository;
         _medewerkerRepository = medewerkerRepository;
-        _kantineRepository = kantineRepository;
     }
 
     [AllowAnonymous]

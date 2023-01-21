@@ -36,8 +36,10 @@ namespace Infrastructure.TM_EF
             //DECLARING
 
             //Declaring student
-            Student student1 = new Student { Email = "user@gmail.com", Naam = "Daan van der Meulen", StudentNummer = 2189862, GeboorteDatum = DateTime.Now.AddYears(-15).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Breda", TelefoonNummer = "0631490687" };
-            Student student2 = new Student { Email = "peter@gmail.com", Naam = "Peter van der Meulen", StudentNummer = 1234567, GeboorteDatum = DateTime.Now.AddYears(-15).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Breda", TelefoonNummer = "0631490687" };
+            Student student1 = new Student { Email = "user@gmail.com", Naam = "Daan van der Meulen", StudentNummer = 2189862, GeboorteDatum = DateTime.Now.AddYears(-18).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Breda", TelefoonNummer = "0631490687" };
+            Student student2 = new Student { Email = "peter@gmail.com", Naam = "Peter van Driel", StudentNummer = 1234567, GeboorteDatum = DateTime.Now.AddYears(-17).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Den Bosch", TelefoonNummer = "0612649732" };
+            Student student3 = new Student { Email = "henk@gmail.com", Naam = "Henk van der As", StudentNummer = 2345678, GeboorteDatum = DateTime.Now.AddYears(-19).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Breda", TelefoonNummer = "065698653d4" };
+            Student student4 = new Student { Email = "lola@gmail.com", Naam = "Lola van den Dool", StudentNummer = 3456789, GeboorteDatum = DateTime.Now.AddYears(-20).AddSeconds(-DateTime.Now.Second).AddMilliseconds(-DateTime.Now.Millisecond).ToString(), StudieStad = "Den Bosch", TelefoonNummer = "0675496354" };
 
             //Declaring kantines
             Kantine kantine1 = new Kantine { Locatie = "Hogeschoollaan 1", Stad = "Breda", WarmeMaaltijden = false };
@@ -87,7 +89,7 @@ namespace Infrastructure.TM_EF
                 AchtienPlus = true,
                 Prijs = 6.71,
                 TypeMaaltijd = TypeMaaltijden.MiddagBorrel,
-                GereserveerdDoor = null
+                GereserveerdDoor = student2
             };
             Pakket pakket3 = new Pakket
             {
@@ -167,6 +169,8 @@ namespace Infrastructure.TM_EF
             _logger.LogInformation("Preparing to seed Students");
             _context.Studenten.Add(student1);
             _context.Studenten.Add(student2);
+            _context.Studenten.Add(student3);
+            _context.Studenten.Add(student4);
 
             //Kantines seeden
             _logger.LogInformation("Preparing to seed Kantines");

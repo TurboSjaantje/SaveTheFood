@@ -15,6 +15,9 @@ namespace Infrastructure.TM_EF
 
         public IEnumerable<Kantine> Kantines => _dbcontext.Kantines.ToList();
 
+        public IEnumerable<Kantine> kantines => from k in _dbcontext.Kantines.ToList()
+                                               select k; 
+
         public Kantine? CreateKantine(Kantine kantine)
         {
             _dbcontext.Kantines.Add(kantine);

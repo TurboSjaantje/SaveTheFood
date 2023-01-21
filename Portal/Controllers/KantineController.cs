@@ -15,7 +15,7 @@ namespace Portal.Controllers
 
         public IActionResult Locaties()
         {
-            ViewBag.kantines = _kantineRepository.Kantines.ToList();
+            ViewBag.kantines = _kantineRepository.kantines;
             return View("Locaties", ViewBag);
         }
     }
