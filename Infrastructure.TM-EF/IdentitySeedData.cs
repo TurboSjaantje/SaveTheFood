@@ -24,6 +24,7 @@ namespace Infrastructure.TM_EF
 
             const string USERNAME_POWERUSER = "admin@gmail.com";
             const string USERNAME_REGULARUSER = "user@gmail.com";
+            const string USERNAME_REGULARUSER2 = "peter@gmail.com";
 
             var powerUser = await _userManager.FindByNameAsync(USERNAME_POWERUSER);
             if (powerUser != null)
@@ -46,6 +47,15 @@ namespace Infrastructure.TM_EF
             if (_regularUser == null)
             {
                 _regularUser = new IdentityUser(USERNAME_REGULARUSER);
+
+                await _userManager.CreateAsync(_regularUser, PASSWORD);
+                await _userManager.AddClaimAsync(_regularUser, new Claim(CLAIMNAME_USERTYPE, "regularuser"));
+            }
+            
+            IdentityUser _regularUser = await _userManager.FindByIdAsync(USERNAME_REGULARUSER2);
+            if (_regularUser == null)
+            {
+                _regularUser = new IdentityUser(USERNAME_REGULARUSER2);
 
                 await _userManager.CreateAsync(_regularUser, PASSWORD);
                 await _userManager.AddClaimAsync(_regularUser, new Claim(CLAIMNAME_USERTYPE, "regularuser"));
